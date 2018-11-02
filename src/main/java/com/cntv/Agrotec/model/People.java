@@ -13,9 +13,9 @@ import javax.persistence.*;
 public class People {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "Identificador unico por pessoa, cada um so possui apenas 1 (um) id", example = "1", required = false, position = 0)
-    private Long id;
+    private Long Id;
 
     @Column(name = "username", nullable = false, length = 20, unique = true)
     @ApiModelProperty(notes = "Nome de usuario da pessoa", example = "agricultor2018", required = true, position = 1)

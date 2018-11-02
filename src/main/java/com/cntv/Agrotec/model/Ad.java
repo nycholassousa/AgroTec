@@ -10,8 +10,8 @@ import java.util.Date;
 @Table(name = "ad")
 public class Ad {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @Column(name = "title", nullable = false, length = 40)
     private String title;
