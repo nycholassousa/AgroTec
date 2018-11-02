@@ -6,6 +6,8 @@ import com.cntv.Agrotec.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PeopleServiceImpl implements PeopleService {
     @Autowired
@@ -24,5 +26,10 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public People findByUserPass(String username, String password) {
         return peopleRepository.findByUserPass(username, password);
+    }
+
+    @Override
+    public List<People> findByPeopleList(String firstname) {
+        return peopleRepository.findByPeopleList(firstname);
     }
 }

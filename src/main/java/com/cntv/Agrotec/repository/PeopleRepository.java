@@ -15,4 +15,7 @@ public interface PeopleRepository extends JpaRepository<People, Long> {
 
     @Query("SELECT p FROM People p WHERE p.username = ?1 AND p.password = ?2")
     People findByUserPass(String username, String password);
+
+    @Query("SELECT p FROM People p WHERE p.firstName = ?1")
+    List<People> findByPeopleList(String firstname);
 }

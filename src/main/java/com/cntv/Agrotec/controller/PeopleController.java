@@ -37,4 +37,9 @@ public class PeopleController {
     People getLoginPeople(@PathVariable String username, @PathVariable String password){
         return repository.findByUserPass(username, password);
     }
+
+    @GetMapping("/people/firstname/{firstname}")
+    List<People> getPeopleByFirstname(@PathVariable String firstname) {
+        return repository.findByPeopleList(firstname);
+    }
 }
