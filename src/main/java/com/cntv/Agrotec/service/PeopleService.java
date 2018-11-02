@@ -1,7 +1,9 @@
 package com.cntv.Agrotec.service;
 
 import com.cntv.Agrotec.model.People;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface PeopleService {
     void save(People people);
 
