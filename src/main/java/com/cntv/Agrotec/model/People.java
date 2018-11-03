@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,6 +43,9 @@ public class People {
     @ApiModelProperty(notes = "Telefone do usuario", example = "11988887777", required = true, position = 6)
     private String phone;
 
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="people")
+    private List people = new ArrayList();
+
     public People() {}
 
     public People(String username, String password, String firstName, String lastName, String email, String phone) {
@@ -50,5 +55,10 @@ public class People {
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+    }
+
+    public void addAd(Ad ad) {
+        this.people.add(ad);
+        ad.setPeople(this);
     }
 }

@@ -18,9 +18,6 @@ public class PeopleController {
     @Autowired
     private PeopleRepository repository;
 
-    @Autowired
-    private PeopleService peopleService;
-
     @GetMapping("/peoples")
     @ApiOperation("Retorna uma lista com todas as pessoas cadastradas na base")
     List<People> all() {
