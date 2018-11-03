@@ -1,5 +1,6 @@
 package com.cntv.Agrotec.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -15,8 +16,9 @@ import java.util.List;
 public class People {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "Identificador unico por pessoa, cada um so possui apenas 1 (um) id", example = "1", required = false, position = 0)
+    @JsonIgnore
     private Long Id;
 
     @Column(name = "username", nullable = false, length = 20, unique = true)

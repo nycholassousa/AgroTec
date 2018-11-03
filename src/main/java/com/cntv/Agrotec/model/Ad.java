@@ -1,6 +1,7 @@
 package com.cntv.Agrotec.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -12,8 +13,10 @@ import java.util.Date;
 @Table(name = "ad")
 public class Ad {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(notes = "Id do anuncio", example = "1", required = false, position = 0)
+    @JsonIgnore
+    @JsonProperty(value = "id")
     private Long Id;
 
     @Column(name = "title", nullable = false, length = 40)
@@ -26,9 +29,9 @@ public class Ad {
 
     @Column(name = "registerDate", nullable = false)
     @ApiModelProperty(notes = "Data da criaçao do anuncio", example = "11/09/2001", required = true, position = 3)
-    private Date registerDate;
+    private String registerDate;
 
-    @ManyToOne(targetEntity = People.class, fetch=FetchType.EAGER)
+    @ManyToOne(targetEntity = People.class, fetch=FetchType.LAZY)
     @JoinColumn(name="people_id")
     @ApiModelProperty(notes = "Entidade pessoa")
     @JsonIgnore
@@ -37,7 +40,7 @@ public class Ad {
     @Column(name = "people_id", insertable = false, updatable = false)
     private Long peopleId;
 
-    public Ad(String title, String description, Date registerDate, People people) {
+    public Ad(String title, String description, String registerDate, People people) {
         this.title = title;
         this.description = description;
         this.registerDate = registerDate;
