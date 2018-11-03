@@ -1,14 +1,16 @@
 package com.cntv.Agrotec.controller;
 
+import com.cntv.Agrotec.exception.ResourceNotFoundException;
 import com.cntv.Agrotec.model.Ad;
 import com.cntv.Agrotec.repository.AdRepository;
+import com.cntv.Agrotec.repository.PeopleRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,9 +21,23 @@ public class AdController {
     @Autowired
     private AdRepository adRepository;
 
+    @Autowired
+    private PeopleRepository peopleRepository;
+
     @GetMapping("/ads")
     @ApiOperation("Retorna uma lista com todos os anuncios na base")
     List<Ad> all() {
         return adRepository.findAll();
     }
+
+    @PostMapping("/ads/{userId}/advert")
+    @ApiParam("Adiciona um anuncio, baseado no ID da pessoa")
+    public Ad createAd(@PathVariable (value = "userId") Long userId, @RequestBody Ad ad) {
+        return peopleRepository.findById(userId).map(people -> {
+            ad.setPeople(people);
+            return adRepository.save(ad);
+        }).orElseThrow(() -> new ResourceNotFoundException("userId " + userId + " not found."));
+    }
+
+
 }

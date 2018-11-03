@@ -1,5 +1,6 @@
 package com.cntv.Agrotec.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -27,8 +28,19 @@ public class Ad {
     @ApiModelProperty(notes = "Data da criaçao do anuncio", example = "11/09/2001", required = true, position = 3)
     private Date registerDate;
 
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity = People.class, fetch=FetchType.EAGER)
     @JoinColumn(name="people_id")
     @ApiModelProperty(notes = "Entidade pessoa")
+    @JsonIgnore
     private People people;
+
+    @Column(name = "people_id", insertable = false, updatable = false)
+    private Long peopleId;
+
+    public Ad(String title, String description, Date registerDate, People people) {
+        this.title = title;
+        this.description = description;
+        this.registerDate = registerDate;
+        this.people = people;
+    }
 }
