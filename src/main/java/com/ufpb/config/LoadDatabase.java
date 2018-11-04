@@ -1,7 +1,7 @@
-package com.cntv.Agrotec.config;
+package com.ufpb.config;
 
-import com.cntv.Agrotec.model.People;
-import com.cntv.Agrotec.repository.PeopleRepository;
+import com.ufpb.model.People;
+import com.ufpb.repository.PeopleRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.boot.CommandLineRunner;

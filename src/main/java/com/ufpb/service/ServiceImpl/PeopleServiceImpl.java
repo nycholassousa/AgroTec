@@ -1,8 +1,8 @@
-package com.cntv.Agrotec.service.ServiceImpl;
+package com.ufpb.service.ServiceImpl;
 
-import com.cntv.Agrotec.model.People;
-import com.cntv.Agrotec.repository.PeopleRepository;
-import com.cntv.Agrotec.service.PeopleService;
+import com.ufpb.model.People;
+import com.ufpb.repository.PeopleRepository;
+import com.ufpb.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

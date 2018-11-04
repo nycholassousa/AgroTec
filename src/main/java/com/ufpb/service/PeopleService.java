@@ -1,6 +1,6 @@
-package com.cntv.Agrotec.service;
+package com.ufpb.service;
 
-import com.cntv.Agrotec.model.People;
+import com.ufpb.model.People;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

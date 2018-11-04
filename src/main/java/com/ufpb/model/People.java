@@ -1,4 +1,4 @@
-package com.cntv.Agrotec.model;
+package com.ufpb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;

@@ -1,8 +1,7 @@
-package com.cntv.Agrotec.controller;
+package com.ufpb.controller;
 
-import com.cntv.Agrotec.model.People;
-import com.cntv.Agrotec.repository.PeopleRepository;
-import com.cntv.Agrotec.service.PeopleService;
+import com.ufpb.model.People;
+import com.ufpb.repository.PeopleRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@Api(description = "Seta todas as operaçoes baseadas por pessoa.")
+@Api(value = "Usuarios", description = "Seta todas as operaçoes baseadas por pessoa.", tags = {"Usuarios"})
 public class PeopleController {
     @Autowired
     private PeopleRepository repository;

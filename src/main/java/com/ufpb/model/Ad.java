@@ -1,4 +1,4 @@
-package com.cntv.Agrotec.model;
+package com.ufpb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Entity

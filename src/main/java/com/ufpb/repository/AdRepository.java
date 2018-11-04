@@ -1,6 +1,6 @@
-package com.cntv.Agrotec.repository;
+package com.ufpb.repository;
 
-import com.cntv.Agrotec.model.Ad;
+import com.ufpb.model.Ad;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
