@@ -45,14 +45,19 @@ public class People {
     @ApiModelProperty(notes = "Telefone do usuario", example = "11988887777", required = true, position = 6)
     private String phone;
 
+    @Column(name = "avatar", nullable = true, length = 255, unique = false)
+    @ApiModelProperty(notes = "Link do avatar do usuario", example = "www.google.com/imagem.png", required = false, position = 7)
+    private String urlImage;
+
     public People() {}
 
-    public People(String username, String password, String firstName, String lastName, String email, String phone) {
+    public People(String username, String password, String firstName, String lastName, String email, String phone, String urlImage) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.urlImage = urlImage;
     }
 }

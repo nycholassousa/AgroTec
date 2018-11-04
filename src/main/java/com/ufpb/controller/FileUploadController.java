@@ -1,8 +1,11 @@
 package com.ufpb.controller;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ufpb.model.People;
+import com.ufpb.repository.PeopleRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -16,12 +19,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ufpb.storage.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api")
 @Api(value = "Imagens", description = "Seta todas as operaçoes baseadas em imagens.", tags = {"Imagens"})
 public class FileUploadController {
 
     private final StorageService storageService;
+
+    @Autowired
+    PeopleRepository peopleRepository;
 
     @Autowired
     public FileUploadController(StorageService storageService) {
@@ -36,7 +44,7 @@ public class FileUploadController {
                         "serveFile", path.getFileName().toString()).build().toString())
                 .collect(Collectors.toList()));
 
-        return "uploadForm";
+        return model.toString();
     }
 
     @GetMapping("/avatar/{filename:.+}")
@@ -49,14 +57,16 @@ public class FileUploadController {
     }
 
     @PostMapping("/avatar")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+    public void handleFileUpload(HttpServletRequest request,
+                                @RequestParam String username,
+                                @RequestParam("file") MultipartFile file,
+                                RedirectAttributes redirectAttributes) {
 
         storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+        People people = peopleRepository.findByUsername(username);
+        people.setUrlImage(request.getRequestURL().toString() + "/" + file.getOriginalFilename());
 
-        return "redirect:/";
+        peopleRepository.save(people);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
