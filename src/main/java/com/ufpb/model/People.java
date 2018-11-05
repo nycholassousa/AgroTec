@@ -16,7 +16,7 @@ import java.util.List;
 public class People {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "Identificador unico por pessoa, cada um so possui apenas 1 (um) id", example = "1", required = false, position = 0)
     @JsonIgnore
     private Long Id;
@@ -41,7 +41,7 @@ public class People {
     @ApiModelProperty(notes = "Email do usuario", example = "email@email.com", required = true, position = 5)
     private String email;
 
-    @Column(name = "phone", nullable = false, length = 20, unique = true)
+    @Column(name = "phone", nullable = false, length = 20, unique = false)
     @ApiModelProperty(notes = "Telefone do usuario", example = "11988887777", required = true, position = 6)
     private String phone;
 

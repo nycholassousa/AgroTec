@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.ufpb.model.Ad;
 import com.ufpb.model.People;
+import com.ufpb.repository.AdRepository;
 import com.ufpb.repository.PeopleRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,9 @@ public class FileUploadController {
     PeopleRepository peopleRepository;
 
     @Autowired
+    AdRepository adRepository;
+
+    @Autowired
     public FileUploadController(StorageService storageService) {
         this.storageService = storageService;
     }
@@ -56,17 +61,26 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/avatar/{username}")
+    @PutMapping("/avatar/{username}")
     public void handleFileUpload(HttpServletRequest request,
                                 @PathVariable String username,
-                                @RequestParam("file") MultipartFile file,
-                                RedirectAttributes redirectAttributes) {
+                                @RequestParam("file") MultipartFile file) {
 
         storageService.store(file);
         People people = peopleRepository.findByUsername(username);
         people.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/avatar/" + file.getOriginalFilename());
 
         peopleRepository.save(people);
+    }
+
+    @PutMapping("/image/{AdId}")
+    public void handleImageAdUpload(HttpServletRequest request,
+                                    @PathVariable Long AdId,
+                                    @RequestParam("file") MultipartFile file) {
+
+        storageService.store(file);
+        Ad ad = adRepository.findAdById(AdId);
+        ad.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/image/" + file.getOriginalFilename());
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

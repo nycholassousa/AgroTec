@@ -18,13 +18,13 @@ public class SwaggerConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("My API Title")
-                .description("Awesome description")
+                .title("Agrotec API")
+                .description("API para o projeto do sistema AgroTec")
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .termsOfServiceUrl("")
-                .version("1.0.0")
-                .contact(new Contact("", "", "contact@contact.com.uy"))
+                .version("0.1")
+                .contact(new Contact("", "", ""))
                 .build();
     }
 
@@ -34,6 +34,7 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ufpb.controller"))
                 .paths(regex("/api.*"))
-                .build();
+                .build()
+                .apiInfo(apiInfo());
     }
 }

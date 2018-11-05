@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Table(name = "ad")
 public class Ad {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(notes = "Id do anuncio", example = "1", required = false, position = 0)
     @JsonIgnore
     @JsonProperty(value = "id")
@@ -30,19 +30,25 @@ public class Ad {
     @ApiModelProperty(notes = "Data da criaçao do anuncio", example = "11/09/2001", required = true, position = 3)
     private String registerDate;
 
-    @ManyToOne(targetEntity = People.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity = People.class, fetch=FetchType.EAGER)
     @JoinColumn(name="people_id")
     @ApiModelProperty(notes = "Entidade pessoa")
-    @JsonIgnore
     private People people;
 
-    @Column(name = "people_id", insertable = false, updatable = false)
-    private Long peopleId;
+    /*
+    @Column(name = "people_id", insertable = true, updatable = true)
+    @ApiModelProperty(notes = "Id da pessoa relacionada ao anuncio", example = "1", required = true, position = 4)
+    private Long people_id;
+    */
 
-    public Ad(String title, String description, String registerDate, People people) {
+    @Column(name = "image", nullable = true)
+    private String urlImage;
+
+    public Ad(String title, String description, String registerDate, People people, String urlImage) {
         this.title = title;
         this.description = description;
         this.registerDate = registerDate;
         this.people = people;
+        this.urlImage = urlImage;
     }
 }
