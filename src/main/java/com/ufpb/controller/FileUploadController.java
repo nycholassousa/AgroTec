@@ -56,15 +56,15 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/avatar")
+    @PostMapping("/avatar/{username}")
     public void handleFileUpload(HttpServletRequest request,
-                                @RequestParam String username,
+                                @PathVariable String username,
                                 @RequestParam("file") MultipartFile file,
                                 RedirectAttributes redirectAttributes) {
 
         storageService.store(file);
         People people = peopleRepository.findByUsername(username);
-        people.setUrlImage(request.getRequestURL().toString() + "/" + file.getOriginalFilename());
+        people.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/avatar/" + file.getOriginalFilename());
 
         peopleRepository.save(people);
     }
