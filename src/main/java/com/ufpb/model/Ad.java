@@ -33,7 +33,6 @@ public class Ad {
     @ManyToOne(targetEntity = People.class, fetch=FetchType.EAGER)
     @JoinColumn(name="people_id")
     @ApiModelProperty(notes = "Entidade pessoa")
-    @JsonIgnore
     private People people;
 
     @Column(name = "people_id", insertable = false, updatable = false)
