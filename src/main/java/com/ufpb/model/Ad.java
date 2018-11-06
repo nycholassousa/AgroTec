@@ -33,9 +33,14 @@ public class Ad {
     @ManyToOne(targetEntity = People.class, fetch=FetchType.EAGER)
     @JoinColumn(name="people_id")
     @ApiModelProperty(notes = "Entidade pessoa")
+    @JsonIgnore
     private People people;
 
+    @Column(name = "people_id", insertable = false, updatable = false)
+    private long people_id;
+
     @Column(name = "image", nullable = true)
+    @ApiModelProperty(notes = "Url da imagem", example = "http://url/image.jpeg", required = false, position = 4)
     private String urlImage;
 
     @Column(name = "regiao", nullable = false)

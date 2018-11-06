@@ -1,6 +1,7 @@
 package com.ufpb.controller;
 
 import com.ufpb.model.Ad;
+import com.ufpb.model.People;
 import com.ufpb.repository.AdRepository;
 import com.ufpb.repository.PeopleRepository;
 import io.swagger.annotations.Api;
@@ -30,6 +31,10 @@ public class AdController {
     @PostMapping("/ads")
     @ApiOperation("Adiciona um anuncio, baseado no ID da pessoa")
     void createAd(@RequestBody Ad ad) {
+
+        People people = peopleRepository.findById(ad.getPeople_id()).orElse(null);
+        ad.setPeople(people);
+
         adRepository.save(ad);
     }
 
