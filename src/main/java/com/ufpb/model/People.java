@@ -37,7 +37,7 @@ public class People {
     @ApiModelProperty(notes = "Ultimo nome do usuario", example = "Cebola", required = true, position = 4)
     private String lastName;
 
-    @Column(name = "email", nullable = false, length = 20, unique = true)
+    @Column(name = "email", nullable = false, length = 50, unique = true)
     @ApiModelProperty(notes = "Email do usuario", example = "email@email.com", required = true, position = 5)
     private String email;
 

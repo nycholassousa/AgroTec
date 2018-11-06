@@ -49,7 +49,9 @@ public class PeopleController {
 
     @PostMapping("/people")
     @ApiOperation("Cria um usuario no banco de dados")
-    void postNewUser(@ApiParam("Informaçoes necessarias para adiçao de usuario no banco de dados") @RequestBody People people) {
+    People postNewUser(@ApiParam("Informaçoes necessarias para adiçao de usuario no banco de dados") @RequestBody People people) {
         repository.save(people);
+
+        return people;
     }
 }

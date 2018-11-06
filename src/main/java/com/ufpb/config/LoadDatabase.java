@@ -22,17 +22,26 @@ class LoadDatabase {
         return args -> {
             Random gerador = new Random();
 
-            People[] peoples = new People[11];
-            for (int i = 0; i < peoples.length; i++) {
-                peoples[i] = new People("username" + i, "password" + i, "firstname" + i, "lastname" + i, "email" + i +"@email.com", "1111-111" + i, "https://img.ibxk.com.br/2015/08/27/27151441599410.jpg");
-                peopleRepository.save(peoples[i]);
+            People[] peoples1 = new People[5];
+            peoples1[0] = new People("caio", "caio", "Caio", "Marcelo", "caiomcg@gmail.com", "83911111111", "");
+            peoples1[1] = new People("nycholas", "nycholas", "Nycholas", "de Sousa", "nycholas@live.com", "83922222222", "");
+            peoples1[2] = new People("thiago", "thiago", "Thiago", "Luiz", "thiago.luiz@lavid.ufpb.br", "83933333333", "");
+            peoples1[3] = new People("victor", "victor", "Victor", "Batista", "rotciv18@hotmail.com", "83944444444", "");
+            peoples1[4] = new People("gledson", "gledson", "Gledson", "Elias", "gledson@ci.ufpb.br", "83955555555", "http://www.ufpb.br/sites/default/files/Gledson%20Silveira.jpg");
+
+            for (int i = 0; i < peoples1.length; i++) {
+                peopleRepository.save(peoples1[i]);
             }
 
-            Ad[] ads = new Ad[11];
-            for (int i = 0; i < ads.length; i++) {
-                int aux = gerador.nextInt(4) + 1;
-                ads[i] = new Ad("Titulo " + i, "Descrição " + i, String.valueOf(aux), "01/01/1970", peoples[i], "https://blog.petnanet.com.br/wp-content/uploads/2017/09/106262-voce-sabe-como-cuidar-de-uma-calopsita-aprenda-aqui-700x465.jpg");
-                adRepository.save(ads[i]);
+            Ad[] ads1 = new Ad[5];
+            ads1[0] = new Ad("Peixes", "Vendo piadas para consumo, 10 reais o quilo", "1", "05/11/2018", peoples1[0], "http://www.clubedapescaria.com.br/img/peixes/lambari-piaba.jpg");
+            ads1[1] = new Ad("Casal de Calopsita", "Vendo casal de calopsita reprodutor, 100 reais ou um moto g", "2", "06/11/2018", peoples1[1], "http://1.bp.blogspot.com/-O_ygzXwQOgI/UEUdYJYR7BI/AAAAAAAACNo/WZuNiIDgqww/s1600/images.jpeg");
+            ads1[2] = new Ad("Macaxeira e Batata Doce", "1 real o quilo", "2", "05/11/2018", peoples1[2], "https://www.mundoboaforma.com.br/wp-content/uploads/2014/05/batata-doce-620x330.jpg");
+            ads1[3] = new Ad("Trigo", "24 reais a saca", "3", "04/11/2018", peoples1[3], "http://qbacanaalimentos.com.br/images/empresa/trigo.jpg");
+            ads1[4] = new Ad("Trator", "Trator para colheira, contatar pelo telefone", "4", "06/11/2018", peoples1[4], "https://cdn.pixabay.com/photo/2016/08/02/10/31/combine-harvester-1562989_960_720.jpg");
+
+            for (int i = 0; i < ads1.length; i++) {
+                adRepository.save(ads1[i]);
             }
         };
     }
