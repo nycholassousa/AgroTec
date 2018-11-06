@@ -33,5 +33,4 @@ public class AdController {
         adRepository.save(ad);
     }
 
-
 }

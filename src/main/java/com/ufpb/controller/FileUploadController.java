@@ -53,7 +53,6 @@ public class FileUploadController {
     }
 
     @GetMapping("/avatar/{filename:.+}")
-    @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
         Resource file = storageService.loadAsResource(filename);
@@ -61,13 +60,13 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PutMapping("/avatar/{username}")
+    @PutMapping("/avatar/{userId}")
     public void handleFileUpload(HttpServletRequest request,
-                                @PathVariable String username,
+                                @PathVariable Long userId,
                                 @RequestParam("file") MultipartFile file) {
 
         storageService.store(file);
-        People people = peopleRepository.findByUsername(username);
+        People people = peopleRepository.findById(userId).orElse(null);
         people.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/avatar/" + file.getOriginalFilename());
 
         peopleRepository.save(people);
@@ -79,8 +78,10 @@ public class FileUploadController {
                                     @RequestParam("file") MultipartFile file) {
 
         storageService.store(file);
-        Ad ad = adRepository.findAdById(AdId);
+        Ad ad = adRepository.findById(AdId).orElse(null);
         ad.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/image/" + file.getOriginalFilename());
+
+        adRepository.save(ad);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

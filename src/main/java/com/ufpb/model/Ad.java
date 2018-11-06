@@ -35,18 +35,17 @@ public class Ad {
     @ApiModelProperty(notes = "Entidade pessoa")
     private People people;
 
-    /*
-    @Column(name = "people_id", insertable = true, updatable = true)
-    @ApiModelProperty(notes = "Id da pessoa relacionada ao anuncio", example = "1", required = true, position = 4)
-    private Long people_id;
-    */
-
     @Column(name = "image", nullable = true)
     private String urlImage;
 
-    public Ad(String title, String description, String registerDate, People people, String urlImage) {
+    @Column(name = "regiao", nullable = false)
+    @ApiModelProperty(notes = "Regiao do Anuncio", example = "1", required = true, position = 4)
+    private int regiao;
+
+    public Ad(String title, String description, int regiao, String registerDate, People people, String urlImage) {
         this.title = title;
         this.description = description;
+        this.regiao = regiao;
         this.registerDate = registerDate;
         this.people = people;
         this.urlImage = urlImage;
