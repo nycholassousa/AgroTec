@@ -38,4 +38,9 @@ public class AdController {
         adRepository.save(ad);
     }
 
+    @GetMapping("/ads/regiao/{regiao}")
+    @ApiOperation("Retorna uma lista baseada por regiao")
+    List<Ad> findRegions(@PathVariable String regiao) {
+        return adRepository.findAdByRegiao(regiao);
+    }
 }

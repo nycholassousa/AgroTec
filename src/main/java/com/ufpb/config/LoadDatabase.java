@@ -31,7 +31,7 @@ class LoadDatabase {
             Ad[] ads = new Ad[11];
             for (int i = 0; i < ads.length; i++) {
                 int aux = gerador.nextInt(4) + 1;
-                ads[i] = new Ad("Titulo " + i, "Descrição " + i, aux, "01/01/1970", peoples[i], "https://blog.petnanet.com.br/wp-content/uploads/2017/09/106262-voce-sabe-como-cuidar-de-uma-calopsita-aprenda-aqui-700x465.jpg");
+                ads[i] = new Ad("Titulo " + i, "Descrição " + i, String.valueOf(aux), "01/01/1970", peoples[i], "https://blog.petnanet.com.br/wp-content/uploads/2017/09/106262-voce-sabe-como-cuidar-de-uma-calopsita-aprenda-aqui-700x465.jpg");
                 adRepository.save(ads[i]);
             }
         };

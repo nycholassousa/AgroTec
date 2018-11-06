@@ -34,7 +34,7 @@ public class People {
     private String firstName;
 
     @Column(name = "lastname", nullable = false, length = 20)
-    @ApiModelProperty(notes = "Ultimo nome do usuario", example = "Alho", required = true, position = 4)
+    @ApiModelProperty(notes = "Ultimo nome do usuario", example = "Cebola", required = true, position = 4)
     private String lastName;
 
     @Column(name = "email", nullable = false, length = 20, unique = true)

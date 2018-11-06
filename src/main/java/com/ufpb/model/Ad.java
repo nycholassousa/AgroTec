@@ -45,9 +45,9 @@ public class Ad {
 
     @Column(name = "regiao", nullable = false)
     @ApiModelProperty(notes = "Regiao do Anuncio", example = "1", required = true, position = 4)
-    private int regiao;
+    private String regiao;
 
-    public Ad(String title, String description, int regiao, String registerDate, People people, String urlImage) {
+    public Ad(String title, String description, String regiao, String registerDate, People people, String urlImage) {
         this.title = title;
         this.description = description;
         this.regiao = regiao;
