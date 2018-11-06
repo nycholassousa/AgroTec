@@ -59,6 +59,14 @@ public class FileUploadController {
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
+    
+    @GetMapping("/image/{filename:.+}")
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
 
     @PutMapping("/avatar/{userId}")
     public void handleFileUpload(HttpServletRequest request,
@@ -67,7 +75,7 @@ public class FileUploadController {
 
         storageService.store(file);
         People people = peopleRepository.findById(userId).orElse(null);
-        people.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/avatar/" + file.getOriginalFilename());
+        people.setUrlImage("/api/avatar/" + file.getOriginalFilename());
 
         peopleRepository.save(people);
     }
@@ -79,7 +87,7 @@ public class FileUploadController {
 
         storageService.store(file);
         Ad ad = adRepository.findById(AdId).orElse(null);
-        ad.setUrlImage(request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/api/image/" + file.getOriginalFilename());
+        ad.setUrlImage("/api/image/" + file.getOriginalFilename());
 
         adRepository.save(ad);
     }
