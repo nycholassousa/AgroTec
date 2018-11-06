@@ -30,12 +30,14 @@ public class AdController {
 
     @PostMapping("/ads")
     @ApiOperation("Adiciona um anuncio, baseado no ID da pessoa")
-    void createAd(@RequestBody Ad ad) {
+    Ad createAd(@RequestBody Ad ad) {
 
         People people = peopleRepository.findById(ad.getPeople_id()).orElse(null);
         ad.setPeople(people);
 
         adRepository.save(ad);
+
+        return ad;
     }
 
     @GetMapping("/ads/regiao/{regiao}")
