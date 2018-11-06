@@ -22,7 +22,7 @@ public class Ad {
     @ApiModelProperty(notes = "Titulo do anuncio", example = "Casal de calopsita", required = true, position = 1)
     private String title;
 
-    @Column(name = "description", nullable = false, length = 100)
+    @Column(name = "description", nullable = false, length = 255)
     @ApiModelProperty(notes = "Descriçao do anuncio", example = "Casal reprodutor, mansos", required = true, position = 2)
     private String description;
 

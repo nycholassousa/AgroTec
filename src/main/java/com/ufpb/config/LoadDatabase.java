@@ -34,11 +34,11 @@ class LoadDatabase {
             }
 
             Ad[] ads1 = new Ad[5];
-            ads1[0] = new Ad("Peixes", "Vendo piadas para consumo, 10 reais o quilo", "1", "05/11/2018", peoples1[0], "http://www.clubedapescaria.com.br/img/peixes/lambari-piaba.jpg");
+            ads1[0] = new Ad("Peixes", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis", "1", "05/11/2018", peoples1[0], "http://www.clubedapescaria.com.br/img/peixes/lambari-piaba.jpg");
             ads1[1] = new Ad("Casal de Calopsita", "Vendo casal de calopsita reprodutor, 100 reais ou um moto g", "2", "06/11/2018", peoples1[1], "http://1.bp.blogspot.com/-O_ygzXwQOgI/UEUdYJYR7BI/AAAAAAAACNo/WZuNiIDgqww/s1600/images.jpeg");
             ads1[2] = new Ad("Macaxeira e Batata Doce", "1 real o quilo", "2", "05/11/2018", peoples1[2], "https://www.mundoboaforma.com.br/wp-content/uploads/2014/05/batata-doce-620x330.jpg");
             ads1[3] = new Ad("Trigo", "24 reais a saca", "3", "04/11/2018", peoples1[3], "http://qbacanaalimentos.com.br/images/empresa/trigo.jpg");
-            ads1[4] = new Ad("Trator", "Trator para colheira, contatar pelo telefone", "4", "06/11/2018", peoples1[4], "https://cdn.pixabay.com/photo/2016/08/02/10/31/combine-harvester-1562989_960_720.jpg");
+            ads1[4] = new Ad("Trator", "Trator para colheita, contatar pelo telefone", "4", "06/11/2018", peoples1[4], "https://cdn.pixabay.com/photo/2016/08/02/10/31/combine-harvester-1562989_960_720.jpg");
 
             for (int i = 0; i < ads1.length; i++) {
                 adRepository.save(ads1[i]);
