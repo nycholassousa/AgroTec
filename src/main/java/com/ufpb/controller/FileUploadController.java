@@ -53,7 +53,7 @@ public class FileUploadController {
     }
 
     @GetMapping("/avatar/{filename:.+}")
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<Resource> serveFileAvatar(@PathVariable String filename) {
 
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
@@ -61,7 +61,7 @@ public class FileUploadController {
     }
     
     @GetMapping("/image/{filename:.+}")
-    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+    public ResponseEntity<Resource> serveFileImage(@PathVariable String filename) {
 
         Resource file = storageService.loadAsResource(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
